@@ -10,7 +10,7 @@ class Data:
         # Constantes
         self.wheelPosMax = 0
         self.wheelPosMin = 0
-        self.pSizes = [37, 34, 42, 42]  # número de bytes de cada pacote
+        self.pSizes = [24, 35, 36, 47]  # número de bytes de cada pacote
         
         # Dicionários com 'identificadores' (chaves) para todos os dados dos 4 pacotes em ordem
         self.dic = {
@@ -84,7 +84,7 @@ class Data:
         if ((int(buffer[0]) == 1) and (len(buffer) == self.pSizes[0])):  # Testa se é o pacote 1 e se está completo.
             
             # Acelerometros
-            for i in range(0, 3):
+            for i in range(0, 4):
                 j = 2 + 2*i
                 p1 = (self.packNames[0:10])
                 key = p1[i]                
@@ -92,8 +92,7 @@ class Data:
                 self.dicRaw[key] = self.twosComplement(self.dicRaw[key], 16) # Complemento de 2
                 self.dic[key] = round(float(self.dicRaw[key] / 16384), 3) 
             
-            # Velocidade angular, 4 rodas, Rpm, beacon e tempo do pacote
-            self.dicRaw['velAN'] = int(buffer[26])
+            # Velocidade das 4 rodas, Rpm, beacon e tempo do pacote
             self.dicRaw['velDD'] = int(buffer[26])
             self.dicRaw['velDE'] = int(buffer[27])
             self.dicRaw['velTD'] = int(buffer[28])
