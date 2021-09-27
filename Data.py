@@ -93,16 +93,15 @@ class Data:
                 self.dic[key] = round(float(self.dicRaw[key] / 16384), 3) 
             
             # Velocidade das 4 rodas, Rpm, beacon e tempo do pacote
-            self.dicRaw['velDD'] = int(buffer[26])
-            self.dicRaw['velDE'] = int(buffer[27])
-            self.dicRaw['velTD'] = int(buffer[28])
-            self.dicRaw['velTE'] = int(buffer[29])
-            self.dicRaw['rpm'] = (int(buffer[30]) << 8) + int(buffer[31])
-            self.dicRaw['beacon'] = int(buffer[32])
-            self.dicRaw['time'] = ((buffer[33]) << 8) + int(buffer[34])
+            self.dicRaw['velDD'] = int(buffer[10])
+            self.dicRaw['velDE'] = int(buffer[11])
+            self.dicRaw['velTD'] = int(buffer[12])
+            self.dicRaw['velTE'] = int(buffer[13])
+            self.dicRaw['rpm'] = (int(buffer[14]) << 8) + int(buffer[15])
+            self.dicRaw['beacon'] = int(buffer[16])
+            self.dicRaw['time'] = ((buffer[17]) << 8) + int(buffer[18])
             
             # Dados que não precisam de processamento
-            self.dic['velAN'] = self.dicRaw['velAN']
             self.dic['velDE'] = self.dicRaw['velDE']
             self.dic['velDD'] = self.dicRaw['velDD']
             self.dic['velTE'] = self.dicRaw['velTE']
