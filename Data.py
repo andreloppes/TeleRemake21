@@ -121,7 +121,7 @@ class Data:
 
     #* Processamento e armazenamento do Pacote 2
     #* Somente dados de extensometria, tratamentos mais simples, por ser um unica tipo de dado
-    def updateP4Data(self, buffer):
+    def updateP2Data(self, buffer):
         if ((int(buffer[0]) == 2) and (len(buffer) == self.pSizes[1])):  # testa se é o pacote 2 e se está completo
             p2 = (self.packNames[12:22])
             for i in range(0, len(p2) -1):
@@ -136,7 +136,7 @@ class Data:
             return 0
 
     #* Processamento e armazenamento do Pacote 3
-    def updateP2Data(self, buffer):
+    def updateP3Data(self, buffer):
         if ((int(buffer[0]) == 3) and (len(buffer) == self.pSizes[2])):  #Testa se é o pacote 3 e se está completo
 
             #. Todos os dados do pacote 3 sao no formato byte1 << 8 | byte2 
@@ -174,7 +174,7 @@ class Data:
 
 
     #* Processamento e armazenamento do Pacote 4
-    def updateP3Data(self, buffer):
+    def updateP4Data(self, buffer):
         if ((int(buffer[0]) == 4) and (len(buffer) == self.pSizes[3])):  #Testa se é o pacote 4 e está completo
 
             # os 10 primeiros dados sao no formato byte1 <<8 | byte2
