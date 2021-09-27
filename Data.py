@@ -10,7 +10,7 @@ class Data:
         # Constantes
         self.wheelPosMax = 0
         self.wheelPosMin = 0
-        self.pSizes = [24, 35, 36, 47]  # número de bytes de cada pacote
+        self.pSizes = [18, 35, 36, 47]  # número de bytes de cada pacote
         
         # Dicionários com 'identificadores' (chaves) para todos os dados dos 4 pacotes em ordem
         self.dic = {
@@ -129,7 +129,7 @@ class Data:
                 key = p2[i]
                 self.dicRaw[key] = (buffer[j] << 16) + (buffer[j+1] << 8) + buffer[j+2]
                 self.dic[key] = self.dicRaw[key]
-            self.dicRaw['time2'] = (buffer[38] << 8) + (buffer[39])
+            self.dicRaw['time2'] = (buffer[32] << 8) + (buffer[33])
             self.dic['time2'] = 25 * self.dicRaw['time2']
             return 1
         else:
