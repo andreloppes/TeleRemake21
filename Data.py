@@ -84,7 +84,7 @@ class Data:
         if ((int(buffer[0]) == 1) and (len(buffer) == self.pSizes[0])):  # Testa se é o pacote 1 e se está completo.
             
             # Acelerometros
-            for i in range(0, 4):
+            for i in range(0, 3):
                 j = 2 + 2*i
                 p1 = (self.packNames[0:10])
                 key = p1[i]                
@@ -93,13 +93,14 @@ class Data:
                 self.dic[key] = round(float(self.dicRaw[key] / 16384), 3) 
             
             # Velocidade das 4 rodas, Rpm, beacon e tempo do pacote
-            self.dicRaw['velDD'] = int(buffer[10])
-            self.dicRaw['velDE'] = int(buffer[11])
-            self.dicRaw['velTD'] = int(buffer[12])
-            self.dicRaw['velTE'] = int(buffer[13])
-            self.dicRaw['rpm'] = (int(buffer[14]) << 8) + int(buffer[15])
-            self.dicRaw['beacon'] = int(buffer[16])
-            self.dicRaw['time'] = ((buffer[17]) << 8) + int(buffer[18])
+            self.dicRaw['velAN'] = int(buffer[10] << 8) + int(buffer[11])
+            self.dicRaw['velDD'] = int(buffer[12] << 8) + int(buffer[13])
+            self.dicRaw['velDE'] = int(buffer[14] << 8) + int(buffer[15])
+            self.dicRaw['velTD'] = int(buffer[16] << 8) + int(buffer[17])
+            self.dicRaw['velTE'] = int(buffer[18] << 8) + int(buffer[19])
+            self.dicRaw['rpm'] = (int(buffer[20]) << 8) + int(buffer[21])
+            self.dicRaw['beacon'] = int(buffer[22])
+            self.dicRaw['time'] = ((buffer[23]) << 8) + int(buffer[24])
             
             # Dados que não precisam de processamento
             self.dic['velDE'] = self.dicRaw['velDE']
@@ -192,7 +193,12 @@ class Data:
             self.dicRaw['gpsLong'] = (buffer[26] << 16) + (buffer[27] << 8) + buffer[28]
             self.dicRaw['gpsNS'] = int(buffer[29])
             self.dicRaw['gpsEW'] = int(buffer[30])
+            self.dicRaw['gpsHora'] = (buffer[31] << 24) + (buffer[32] << 16) + (buffer[33] << 8) + buffer[34]
+            self.dicRaw['gpsData'] = (buffer[35] << 16) + (buffer[36] << 8) + buffer[37]
             self.dicRaw['time4'] = (buffer[38] << 8) + buffer[39]
+            self.dicRaw['sparkCut'] = (buffer[40] << 8) + buffer[41]
+            self.dicRaw['tempBat'] = (buffer[42] << 8) + buffer[43]
+            self.dicRaw['runners'] = (buffer[44] << 8) + buffer[45]
 
             '''Falta gps hora, minuto, segundo, ms, ano, mes dia nessa ordem
             #Tschaen, fazer chamada para função do GPS'''
@@ -215,8 +221,8 @@ class Data:
             self.dic['gpsLong'] = self.dicRaw['gpsLong']
             self.dic['gpsEW'] = self.dicRaw['gpsEW']
            
-            self.dic['gpsData'] = self.dicRaw['gpsData']
-            self.dic['gpsHora'] = self.dicRaw['gpsHora']
+            self.dic['gpsData'] = str(float(self.dicRaw['gpsData'])) + '/' + str(float(self.dicRaw['gpsData'] << 8)) + '/' + str(float(self.dicRaw['gpsData'] << 16))
+            self.dic['gpsHora'] = str(float(self.dicRaw['gpsHora'] << 24)) + ':' + str(float(self.dicRaw['gpsHora'] << 16)) + ':' + str(float(self.dicRaw['gpsHora'] << 8)) + ':' + str(float(self.dicRaw['gpsHora'])) 
            
             self.dic['sparkCut'] = self.dicRaw['sparkCut']
             self.dic['tempBat'] = self.dicRaw['tempBat']

@@ -154,10 +154,10 @@ ui.checkBox_Voltage.setStyleSheet('color:blue')
 
 #DIAGRAMAS GG
 #range
-ui.graphicsView_DiagramaGG_DD.setXRange(-2, 2)
-ui.graphicsView_DiagramaGG_DD.setYRange(-2, 2)
-ui.graphicsView_DiagramaGG_DE.setXRange(-2, 2)
-ui.graphicsView_DiagramaGG_DE.setYRange(-2, 2)
+ui.graphicsView_DiagramaGG_DD_2.setXRange(-2, 2)
+ui.graphicsView_DiagramaGG_DD_2.setYRange(-2, 2)
+ui.graphicsView_DiagramaGG_DE_2.setXRange(-2, 2)
+ui.graphicsView_DiagramaGG_DE_2.setYRange(-2, 2)
 ui.graphicsView_DiagramaGG_TD.setXRange(-2, 2)
 ui.graphicsView_DiagramaGG_TD.setYRange(-2, 2)
 ui.graphicsView_DiagramaGG_TE.setXRange(-2, 2)

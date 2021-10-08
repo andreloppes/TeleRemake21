@@ -122,13 +122,13 @@ class Update:
 
     def update_diagramaGG(self):
     # atualiza o refcurso grafico DiagramaGG
-        self.ui.graphicsView_DiagramaGG_DD.clear()
-        self.ui.graphicsView_DiagramaGG_DD.plot([self.data.dic['acelX_DD']],
+        self.ui.graphicsView_DiagramaGG_DD_2.clear()
+        self.ui.graphicsView_DiagramaGG_DD_2.plot([self.data.dic['acelX_DD']],
                                                 [self.data.dic['acelY_DD']],
                                                 pen=None,
                                                 symbol='o')
-        self.ui.graphicsView_DiagramaGG_DE.clear()
-        self.ui.graphicsView_DiagramaGG_DE.plot([self.data.dic['acelX_DE']],
+        self.ui.graphicsView_DiagramaGG_DE_2.clear()
+        self.ui.graphicsView_DiagramaGG_DE_2.plot([self.data.dic['acelX_DE']],
                                                 [self.data.dic['acelY_DE']],
                                                 pen=None,
                                                 symbol='o')
@@ -253,10 +253,10 @@ class Update:
             for key, i in zip((self.data.packNames[53:65]), range(0, elements)):
                 item = QTableWidgetItem(str(dataDictionary[key]))
                 item.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.ui.tableWidget_StrainGauge.setItem(i, 0, item)
+                self.ui.tableWidget_Package4.setItem(i, 0, item)
 
                 #Alarmes
                 if self.alarms.alarms[key] != []:
-                        self.alarms.checkAlarm(key, self.ui.tableWidget_StrainGauge, i)
+                        self.alarms.checkAlarm(key, self.ui.tableWidget_Package4, i)
                 else:
-                        self.alarms.setFieldBackground(self.ui.tableWidget_StrainGauge, self.alarms.white, i)
+                        self.alarms.setFieldBackground(self.ui.tableWidget_Package4, self.alarms.white, i)
